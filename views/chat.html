@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat</title>
+</head>
+<body>
+    <form   id="myForm" >
+        <input type="text" id="ent" name="msg"/>&nbsp;&nbsp;
+        <input type="hidden"id="use" name="hide"/>
+        <button type="submit"id='btn' >Send</button>
+    </form>
+
+    <script>
+ document.querySelector('button')
+            .addEventListener('click', (e) => {
+                e.preventDefault();
+                const username = localStorage.getItem('username')
+ 
+                const password = document
+                    .querySelector('#ent').value;
+                     
+                fetch('/', {
+                    method: 'POST',
+                    headers: {
+                       
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                    }),
+                })
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then((data) => console.log(data));
+            });
+
+// document.getElementById('myForm').addEventListener('submit', e => {
+//   e.preventDefault()
+//   fetch('http://localhost:3000/', {
+//       method: 'POST',
+//       body: JSON.stringify({
+//         msg:document.getElementById('ent').value,
+//         name:localStorage.getItem('username')
+//       })
+//     })
+//     .then(response => console.log('Success!', response))
+//     .catch(error => console.error('Error!', error.message))
+// });
+   
+       
+        //     localStorage.setItem('msgs',document.getElementById('ent').value)
+        //     document.getElementById('use').value=localStorage.getItem('username')
+
+        //   document.getElementById("myForm").submit();
+         
+         
+        //   document.getElementById('ent').value=undefined
+       
+        </script>
+</body>
+</html>
